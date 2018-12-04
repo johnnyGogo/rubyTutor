@@ -41,6 +41,8 @@ user.active_status?
 user.deleted_status!
 ```
 
+#### 作用域
+
 *******************
 ### Operators
 #### 三元運算
@@ -85,6 +87,16 @@ end
 #### for ... else
 
 #### range()
+
+#### switch / case
+```ruby
+case 'abcdef'
+when 'aaa', 'bbb'
+  puts "aaa or bbb"
+when /def/
+  puts "includes /def/"
+end
+```
 
 
 *******************
@@ -164,11 +176,64 @@ class << self
 
 *******************
 ### DateTime
+- Date
+- Time
+    - Time.current (not use Time.now)
 
+```ruby
+>>> Time.current.to_i == Time.now.to_i
+true
+
+>>> Time.current.to_i == Time.new.to_i
+true
+```
+
+#### 時區
+- Time.utc
+
+#### 時間加減
+```ruby
+Time.local(2018, 11, 30)  本地時間
+Time.utc(2008, 7, 8, 9, 10)
+
+Time - 10 (減秒數)
+Date - 10 (減天數)
+expires = now + 10.days     # 10 days from now
+expires - now             # 864000.0 (seconds)
+(expires - now).to_hours  # 240.0 (hours)
+
+Time.now t.strftime("pattern")
+%a 星期几名称的缩写（比如 Sun）。
+%A  星期几名称的全称（比如 Sunday）。
+%b  月份名称的缩写（比如 Jan）。
+%B  月份名称的全称（比如 January）。
+%c  优选的本地日期和时间表示法。
+%d  一个月中的第几天（01 到 31）。
+%H  一天中的第几小时，24 小时制（00 到 23）。
+%I  一天中的第几小时，12 小时制（01 到 12）。
+%j  一年中的第几天（001 到 366）。
+%m  一年中的第几月（01 到 12）。
+%M  小时中的第几分钟（00 到 59）。
+%p  子午线指示（AM 或 PM）。
+%S  分钟中的第几秒（00 或 60）。
+%U  当前年中的周数，从第一个星期日（作为第一周的第一天）开始（00 到 53）。
+%W  当前年中的周数，从第一个星期一（作为第一周的第一天）开始（00 到 53）。
+%w  一星期中的第几天（Sunday 是 0，0 到 6）。
+%x  只有日期没有时间的优先表示法。
+%X  只有时间没有日期的优先表示法。
+%y  不带世纪的年份表示（00 到 99）。
+%Y  带有世纪的年份。
+%Z  时区名称。
+%%  % 字符。
+```
+
+#### 格式化
+Time.strftime(format)
 
 *******************
 ### JSON
-
+- JSON.generate(my_hash)  or. my_hash.to_json
+- JSON.parse(json_string)
 
 *******************
 ### System
