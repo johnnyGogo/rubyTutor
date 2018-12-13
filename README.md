@@ -1,5 +1,77 @@
 # rubyTutor
 
+<!-- MarkdownTOC autolink="true" style="ordered" -->
+
+1. [Base](#base)
+  1. [Syntax](#syntax)
+    1. [Comments:](#comments)
+    1. [Multiline Comments:](#multiline-comments)
+  1. [Variables](#variables)
+    1. [get variable type](#get-variable-type)
+    1. [convert type](#convert-type)
+    1. [enum](#enum)
+    1. [作用域](#%E4%BD%9C%E7%94%A8%E5%9F%9F)
+  1. [Operators](#operators)
+    1. [三元運算](#%E4%B8%89%E5%85%83%E9%81%8B%E7%AE%97)
+    1. [if](#if)
+    1. [else if](#else-if)
+    1. [else](#else)
+    1. [==](#)
+    1. [True / False](#true--false)
+    1. [while ... else](#while--else)
+    1. [break / continue](#break--continue)
+    1. [for ... else](#for--else)
+    1. [range\(\)](#range)
+    1. [switch / case](#switch--case)
+  1. [Number](#number)
+  1. [Strings](#strings)
+    1. [常數 TODO](#%E5%B8%B8%E6%95%B8-todo)
+    1. [切片](#%E5%88%87%E7%89%87)
+    1. [長度](#%E9%95%B7%E5%BA%A6)
+    1. [分割](#%E5%88%86%E5%89%B2)
+    1. [連結](#%E9%80%A3%E7%B5%90)
+    1. [取代 TODO](#%E5%8F%96%E4%BB%A3-todo)
+    1. [尋找或計算 TODO](#%E5%B0%8B%E6%89%BE%E6%88%96%E8%A8%88%E7%AE%97-todo)
+    1. [格式化 TODO](#%E6%A0%BC%E5%BC%8F%E5%8C%96-todo)
+    1. [判斷 TODO](#%E5%88%A4%E6%96%B7-todo)
+    1. [Regular Expressions](#regular-expressions)
+  1. [Iterate](#iterate)
+  1. [Iterate Advanced](#iterate-advanced)
+    1. [each](#each)
+    1. [map / collect](#map--collect)
+    1. [select / reject](#select--reject)
+    1. [reduce / inject](#reduce--inject)
+    1. [find / detect](#find--detect)
+  1. [Functions](#functions)
+  1. [Lambda](#lambda)
+  1. [Closure](#closure)
+  1. [Modules](#modules)
+  1. [Classes and Objects](#classes-and-objects)
+    1. [類別方法](#%E9%A1%9E%E5%88%A5%E6%96%B9%E6%B3%95)
+  1. [DateTime](#datetime)
+    1. [時區](#%E6%99%82%E5%8D%80)
+    1. [時間加減](#%E6%99%82%E9%96%93%E5%8A%A0%E6%B8%9B)
+    1. [格式化](#%E6%A0%BC%E5%BC%8F%E5%8C%96)
+  1. [JSON](#json)
+  1. [System](#system)
+  1. [Try...Except](#tryexcept)
+  1. [網路](#%E7%B6%B2%E8%B7%AF)
+    1. [解析url](#%E8%A7%A3%E6%9E%90url)
+1. [演算法 Algorithm](#%E6%BC%94%E7%AE%97%E6%B3%95-algorithm)
+  1. [亂數](#%E4%BA%82%E6%95%B8)
+1. [功能 / Framework](#%E5%8A%9F%E8%83%BD--framework)
+  1. [CSV](#csv)
+1. [資料庫操作 ActiveRecord](#%E8%B3%87%E6%96%99%E5%BA%AB%E6%93%8D%E4%BD%9C-activerecord)
+  1. [資料表關聯](#%E8%B3%87%E6%96%99%E8%A1%A8%E9%97%9C%E8%81%AF)
+    1. [has one](#has-one)
+    1. [has_many](#has_many)
+    1. [joins, includes](#joins-includes)
+    1. [Polymorphic Associations](#polymorphic-associations)
+    1. [ActiveSupport::Concern](#activesupportconcern)
+
+<!-- /MarkdownTOC -->
+
+
 ## Base
 
 ### Syntax
@@ -45,6 +117,7 @@ user.deleted_status!
 
 *******************
 ### Operators
+
 #### 三元運算
 ```ruby
 expression ? true_expresion : false_expression
@@ -106,6 +179,67 @@ end
 *******************
 ### Strings
 
+#### 常數 TODO
+- string.ascii_letters
+- string.ascii_lowercase
+- string.ascii_uppercase
+- string.digits
+- string.hexdigits
+- string.octdigits
+
+#### 切片
+```ruby
+'123456789'[0..-1] 取全部
+'123456789'[0..3] => '1234'
+'123456789'[0,3]  => '123' 取長度
+```
+
+#### 長度
+```ruby
+str.size
+str.length
+```
+
+#### 分割
+```ruby
+" now's  the time".split(' ')   #=> ["now's", "the", "time"]
+" now's  the time".split(/ /)   #=> ["", "now's", "", "the", "time"]
+"1, 2.34,56, 7".split(%r{,\s*}) #=> ["1", "2.34", "56", "7"]
+```
+
+#### 連結
+`["keyboard", "monitor", "CPU"].join(",")`
+
+#### 取代 TODO
+- replace: `str.replace(old, new[, max])` default max可指定替換次數
+- strip: 預設去除空白 `' abcabc '.strip()`
+
+#### 尋找或計算 TODO
+- find: 找不到則為-1 `str.find(find_str)`
+- rfind: `str.rfind(find_str)`
+- count: `str.count(count_str)`
+
+#### 格式化 TODO
+
+#### 判斷 TODO
+- startswith: 字首是不是 `str.startswith({word})`
+- endswith: 字尾是不是 `str.endswith({word})`
+- isalnum: 是否只有英數 `str.isalnum()`
+
+#### Regular Expressions
+Rubalar: http://rubular.com/
+
+```ruby
+# new
+re = Regexp.new(pat)
+
+phone = "123-456-7890"
+if phone =~ /(\d{3})-(\d{3})-(\d{4})/
+  ext  = $1
+  city = $2
+  num  = $3
+end
+```
 
 *******************
 ### Iterate
@@ -233,6 +367,7 @@ Time.strftime(format)
 *******************
 ### JSON
 - JSON.generate(my_hash)  or. my_hash.to_json
+- as_json 轉 ruby_json 格式
 - JSON.parse(json_string)
 
 *******************
@@ -241,6 +376,45 @@ Time.strftime(format)
 
 *******************
 ### Try...Except
+
+
+*******************
+### 網路
+
+#### 解析url
+URI.parse
+```ruby
+o = URI.parse('https://termly.io')
+
+o.scheme
+o.path
+o.read
+```
+
+
+**************************************
+## 演算法 Algorithm
+
+*******************
+### 亂數
+```ruby
+rand                    # float random
+rand(1..10)             # range random
+rand(max)               # int random
+(1..100).to_a.sample    
+(1..100).to_a.shuffle   # 洗牌
+```
+
+
+
+
+**************************************
+## 功能 / Framework
+
+*******************
+### CSV
+https://ruby-doc.org/stdlib-2.0.0/libdoc/csv/rdoc/CSV.html
+https://github.com/roo-rb/roo
 
 
 
